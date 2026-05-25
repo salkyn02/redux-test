@@ -1,23 +1,11 @@
-import { useReducer } from "react";
-
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-
-function reducer(state, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-
-    case DECREMENT:
-      return state - 1;
-
-    default:
-      return state;
-  }
-}
+import { useDispatch, useSelector } from "react-redux";
+import {INCREMENT, DECREMENT} from "./main"
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, 0);
+  const dispatch = useDispatch()
+  const state = useSelector((state)=>{
+    return state
+  })
 
   return (
    <div>
