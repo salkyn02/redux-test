@@ -1,16 +1,41 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    default:
+      return state;
+  }
+}
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [state, dispatch] = useReducer(reducer, 0);
 
   return (
-    <button
+   <div>
+     <button
       onClick={() => {
-        setCount(count + 1);
+        dispatch({type: INCREMENT});
       }}
     >
-      {count}
+      {state}
     </button>
+     <button
+      onClick={() => {
+        dispatch({type: DECREMENT});
+      }}
+    >
+      -{state}
+    </button>
+   </div>
   );
 }
 
